@@ -28,7 +28,7 @@ extras/server <port-number>
 ```
 And then start the DAQ with:
 ```
-src/daq localhost <port-number>
+bin/daq localhost <port-number>
 ```
 
 ## Future Plans
