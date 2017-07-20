@@ -10,4 +10,13 @@ The circular buffer begins filling and the data is stored to a CSV file.
 
 Currently the DAQ only supports UDBF (Universal Data Bin Format) 1.07 and doesn't support additional data to be included in the stream (reference the Gantner QGate manual for more information).
 
+## Building
+To build controller using cmake simply:
+```
+cd build
+cmake ..
+make
+```
+
+## Future Plans
 See the ToDo list (TODO.md) to see things currently being worked on, and the future plans (PLANS.md) for planned work.
