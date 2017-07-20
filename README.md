@@ -28,7 +28,7 @@ To test the DAQ run the server with:
 ```
 And then start the DAQ with:
 ```
-./daq localhost <port-numer>
+./daq localhost <port-number>
 ```
 
 ## Future Plans
