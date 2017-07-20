@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11   CMakeFiles/daq.dir/src/daq.cpp.o  -o ../bin/daq -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_system.so -lsqlite3 -lpthread 

@@ -1,0 +1,3 @@
+/home/richardgermond/cdms/daq/build/CMakeFiles/edit_cache.dir
+/home/richardgermond/cdms/daq/build/CMakeFiles/rebuild_cache.dir
+/home/richardgermond/cdms/daq/build/CMakeFiles/daq.dir

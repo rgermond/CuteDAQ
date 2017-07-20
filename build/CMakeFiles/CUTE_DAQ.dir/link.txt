@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -std=c++11 -lsqlite3 -lboost_system -lpthread   CMakeFiles/CUTE_DAQ.dir/src/daq.cpp.o  -o ../bin/CUTE_DAQ 
