@@ -17,6 +17,19 @@ cd build
 cmake ..
 make
 ```
+## Testing
+The extras folder provides a test server (called server) which provides the binary header and a sample of the binary buffer stream. To build the server simply run the bash script provided with:
+```
+./build.sh server
+```
+To test the DAQ run the server with:
+```
+./server <port-number>
+```
+And then start the DAQ with:
+```
+./daq localhost <port-numer>
+```
 
 ## Future Plans
 See the ToDo list (TODO.md) to see things currently being worked on, and the future plans (PLANS.md) for planned work.
