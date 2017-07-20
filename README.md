@@ -20,15 +20,15 @@ make
 ## Testing
 The extras folder provides a test server (called server) which provides the binary header and a sample of the binary buffer stream. To build the server simply run the bash script provided with:
 ```
-./build.sh server
+extras/build.sh server
 ```
 To test the DAQ run the server with:
 ```
-./server <port-number>
+extras/server <port-number>
 ```
 And then start the DAQ with:
 ```
-./daq localhost <port-number>
+src/daq localhost <port-number>
 ```
 
 ## Future Plans
