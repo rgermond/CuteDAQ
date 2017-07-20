@@ -1,5 +1,5 @@
-#CuteDAQ
-##Data Acquisition Controller for Gantner Q. Gate
+# CuteDAQ
+## Data Acquisition Controller for Gantner Q. Gate
 
 The program is written in C++ and makes use of the Boost C++ library (specifically the Asio and the variant modules/headers). It was written for use with the vibration measurement system in the Cryogenic Underground TEst facility (CUTE), a particle astrophysics experiment based out of SNOLAB in Sudbury, ON, ran by SuperCDMS.
 
