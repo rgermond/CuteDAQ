@@ -25,8 +25,6 @@ extras/build.sh server
 To test the DAQ run the server with:
 ```
 cd extras
-```
-```
 ./server <port-number>
 ```
 And then start the DAQ with:
