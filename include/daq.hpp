@@ -83,6 +83,7 @@ class DAQ : public UDBF, public socket_client
             //store the header response
             std::vector<char> header(max_size);
             recv_msg(header, 256); //NOT GOOD SINCE WON'T KNOW IT'S 256 CHARACTERS LONG
+            std::cout << "received header" << std::endl; 
 
             //decode the header
             decode_header(header);
