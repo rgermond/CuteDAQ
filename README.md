@@ -22,6 +22,7 @@ The extras folder provides a test server (called server) which provides the bina
 ```
 extras/build.sh server
 ```
+_Note that the ```build.sh``` script can also be used to build the main DAQ_
 To test the DAQ run the server with:
 ```
 cd extras
