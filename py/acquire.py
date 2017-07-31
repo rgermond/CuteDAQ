@@ -15,6 +15,10 @@ class   QGateController:
         #connect the socket to the appropriate address/port
         self.sckt.connect((self.address,self.port))
 
+        #read out the two greeting messages when the connection is made
+        self.greeting1 = self.sckt.recv(1024)
+        self.greeting2 = self.sckt.recv(1024)
+
     def acquire_head(self):
 
         #bytecode command to acquire circular buffer header
