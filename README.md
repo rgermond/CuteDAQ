@@ -20,7 +20,8 @@ make
 ## Testing
 The extras folder provides a test server (called server) which provides the binary header and a sample of the binary buffer stream. To build the server simply run the bash script provided with:
 ```
-extras/build.sh server
+cd extras
+./build.sh server
 ```
 _Note that the ```build.sh``` script can also be used to build the main DAQ_
 
@@ -29,7 +30,7 @@ To test the DAQ run the server with:
 cd extras
 ./server <port-number>
 ```
-And then start the DAQ with:
+Start the DAQ with:
 ```
 bin/daq localhost <port-number>
 ```
@@ -38,7 +39,7 @@ bin/daq localhost <port-number>
 There is a python implementation of the DAQ included the py folder.
 
 ## Future Plans
-* C++ and python implementations must be modified to read the two greeting messages when the socket is initially connected
+* C++ implementations must be modified to read the two greeting messages when the socket is initially connected
 * C++ version recv_all function does not work as expected, must be fixed prior to deployment 
 * Code could be extended to support possible additional data
 
