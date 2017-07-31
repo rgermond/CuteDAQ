@@ -32,5 +32,11 @@ And then start the DAQ with:
 bin/daq localhost <port-number>
 ```
 
+## Extras
+There is a python implementation of the DAQ included the py folder.
+
 ## Future Plans
-See the ToDo list (TODO.md) to see things currently being worked on, and the future plans (PLANS.md) for planned work.
+* C++ and python implementations must be modified to read the two greeting messages when the socket is initially connected
+* C++ version recv_all function does not work as expected, must be fixed prior to deployment 
+* Code could be extended to support possible additional data
+
