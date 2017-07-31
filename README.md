@@ -36,7 +36,7 @@ bin/daq localhost <port-number>
 ```
 
 ## Extras
-There is a python implementation of the DAQ included the py folder.
+There is a python implementation of the DAQ included in the ```py``` folder.
 
 ## Future Plans
 * C++ implementations must be modified to read the two greeting messages when the socket is initially connected
