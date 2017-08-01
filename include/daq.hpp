@@ -7,6 +7,7 @@
 
 //standard C headers
 #include <signal.h>
+#include <unistd.h> //POSIX only header
 
 //boost headers
 #include <boost/asio.hpp>
@@ -49,14 +50,14 @@ class DAQ : public UDBF, public socket_client
             //public function that allows the daq to be started
 
             set_tbl_name();                                 //changes the name of the table to be saved to (if required)
+            sleep(3);
+            acquire_greeting();                             //reads out the greeting message
             acquire_header();                               //requests, acquires and decodes the binary header (needed to decode buffer) 
             start_buffer();                                 //starts data to begin filling up the circular buffer
             
-            int c = 0;
-            while (c < 1) //!interrupt
+            while (!interrupt)
             {
                 acquire_frames();                           //constantly reads out N_FRAMES from the circular buffer
-                c++;
 
                 //if the flag has been passed to save the data
                 if (save_on)
@@ -72,6 +73,14 @@ class DAQ : public UDBF, public socket_client
         bool save_on;
         std::string tbl_name;
 
+        void acquire_greeting()
+        {
+            std::vector<char> greeting(max_size);
+            recv_all(greeting, max_size);
+            std::string str(greeting.begin(), greeting.end());
+            std::cout << "received greeting" << std::endl; 
+            std::cout << str << std::endl; 
+        }
         void acquire_header()
         {
             //header request byte array
@@ -82,11 +91,15 @@ class DAQ : public UDBF, public socket_client
             
             //store the header response
             std::vector<char> header(max_size);
-            recv_msg(header, 256); //NOT GOOD SINCE WON'T KNOW IT'S 256 CHARACTERS LONG
+            //recv_msg(header, 256); //NOT GOOD SINCE WON'T KNOW IT'S 256 CHARACTERS LONG
+            recv_all(header, max_size);
+            std::string str(header.begin(), header.end());
             std::cout << "received header" << std::endl; 
+            std::cout << str << std::endl; 
 
             //decode the header
             decode_header(header);
+            std::cout << "decoded header" << std::endl; 
         }
         
         void start_buffer()
@@ -96,6 +109,7 @@ class DAQ : public UDBF, public socket_client
 
             //start the circular buffer
             send_msg(buf_req);
+            std::cout << "requested buffer" << std::endl;
         }
 
         void acquire_frames()
@@ -110,9 +124,11 @@ class DAQ : public UDBF, public socket_client
             
             //acquire the frame
             recv_msg(frame, frame_size);
+            std::cout << "received frame" << std::endl; 
 
             //decode the buffer
             decode_frame(frame);
+            std::cout << "decoded frame" << std::endl; 
 
             }
             

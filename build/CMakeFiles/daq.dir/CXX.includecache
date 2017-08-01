@@ -19,6 +19,8 @@ vector
 -
 signal.h
 -
+unistd.h
+-
 boost/asio.hpp
 -
 datetime_str_util.h

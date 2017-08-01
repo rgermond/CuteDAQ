@@ -44,9 +44,10 @@ class socket_client
         }
 
         //read-all function
-        void recv_all (std::vector<char> & data) 
+        void recv_all (std::vector<char> & data,int max_size) 
         {
-            boost::asio::read(socket_, boost::asio::buffer(data), boost::asio::transfer_all());
+            //boost::asio::read(socket_, boost::asio::buffer(data), boost::asio::transfer_all());
+            socket_.read_some(boost::asio::buffer(data, max_size));
         }
 
     private:
