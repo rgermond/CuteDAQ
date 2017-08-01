@@ -39,7 +39,5 @@ bin/daq localhost <port-number>
 There is a python implementation of the DAQ included in the ```py``` folder.
 
 ## Future Plans
-* C++ implementations must be modified to read the two greeting messages when the socket is initially connected
-* C++ version recv_all function does not work as expected, must be fixed prior to deployment 
-* Code could be extended to support possible additional data
+* DAQ::decode_header could be improved to support other versions, little endian computers, and possible additional data
 
