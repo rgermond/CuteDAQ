@@ -77,9 +77,9 @@ class DAQ : public UDBF, public socket_client
         {
             std::vector<char> greeting(max_size);
             recv_all(greeting, max_size);
-            std::string str(greeting.begin(), greeting.end());
-            std::cout << "received greeting" << std::endl; 
-            std::cout << str << std::endl; 
+            //std::string str(greeting.begin(), greeting.end());
+            //std::cout << "received greeting" << std::endl; 
+            //std::cout << str << std::endl; 
         }
         void acquire_header()
         {
@@ -93,13 +93,13 @@ class DAQ : public UDBF, public socket_client
             std::vector<char> header(max_size);
             //recv_msg(header, 256); //NOT GOOD SINCE WON'T KNOW IT'S 256 CHARACTERS LONG
             recv_all(header, max_size);
-            std::string str(header.begin(), header.end());
-            std::cout << "received header" << std::endl; 
-            std::cout << str << std::endl; 
+            //std::string str(header.begin(), header.end());
+            //std::cout << "received header" << std::endl; 
+            //std::cout << str << std::endl; 
 
             //decode the header
             decode_header(header);
-            std::cout << "decoded header" << std::endl; 
+            //std::cout << "decoded header" << std::endl; 
         }
         
         void start_buffer()
@@ -109,7 +109,7 @@ class DAQ : public UDBF, public socket_client
 
             //start the circular buffer
             send_msg(buf_req);
-            std::cout << "requested buffer" << std::endl;
+            //std::cout << "requested buffer" << std::endl;
         }
 
         void acquire_frames()
@@ -124,11 +124,11 @@ class DAQ : public UDBF, public socket_client
             
             //acquire the frame
             recv_msg(frame, frame_size);
-            std::cout << "received frame" << std::endl; 
+            //std::cout << "received frame" << std::endl; 
 
             //decode the buffer
             decode_frame(frame);
-            std::cout << "decoded frame" << std::endl; 
+            //std::cout << "decoded frame" << std::endl; 
 
             }
             
