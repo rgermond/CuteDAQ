@@ -17,6 +17,13 @@ cd build
 cmake ..
 make
 ```
+
+## Usage
+To run the DAQ, call the produced executable with the IPv4 address associated with the controller on port 10000. For example:
+```
+bin/daq 192.168.1.28 10000
+```
+
 ## Testing
 The extras folder provides a test server (called server) which provides the binary header and a sample of the binary buffer stream. To build the server simply run the bash script provided with:
 ```
