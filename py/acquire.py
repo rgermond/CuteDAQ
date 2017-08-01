@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import  socket
+import time
 
 class   QGateController:
     def __init__(self,address,port):
@@ -15,9 +16,11 @@ class   QGateController:
         #connect the socket to the appropriate address/port
         self.sckt.connect((self.address,self.port))
 
-        #read out the two greeting messages when the connection is made
-        self.greeting1 = self.sckt.recv(1024)
-        self.greeting2 = self.sckt.recv(1024)
+        #pause for a few seconds so the greeting messages can pileup
+        time.sleep(2)
+
+        #read out the greeting messages when the connection is made
+        g1 = self.sckt.recv(1024)
 
     def acquire_head(self):
 
@@ -30,7 +33,7 @@ class   QGateController:
         return head
 
     def request_buffer(self):
-        bf = b'$RDBC\t0\r'    #bytecode to request circular buffer
+        bf = b'$RBDC\t0\r'    #bytecode to request circular buffer
         self.sckt.send(bf)
 
     def acquire_buffer(self,frame_size,n_frames):

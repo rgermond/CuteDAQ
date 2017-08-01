@@ -5,13 +5,13 @@ import struct
 
 class   UDBF:
 
-    def __init__(self,raw_head):
-        #this loads the raw header file in binary format
+    def __init__(self):
+        pass
+
+    def decode_header(self,raw_head):
+        #this function decodes the binary header
         self.rh = raw_head
         self.ba = bytearray(raw_head)
-
-    def decode_header(self):
-        #this function decodes the binary header
 
         #get endianess and version of binary format
         self.IsBigEndian    = self.ba[0]
@@ -20,7 +20,8 @@ class   UDBF:
 
         #if the version of the UDBF file isn't 1.07 raise an error
         if self.Version != 107:
-            raise ValueError('UDBFheader only supports version 2.07')
+            print(self.Version)
+            raise ValueError('UDBFheader only supports version 1.07')
 
         #get the length of the vendor name (should be 43) and make it a string
         #exclude the last character as this is just a trailing \x00
@@ -82,13 +83,6 @@ class   UDBF:
                 raise ValueError('UDBFheader does not handle additional data in the header file')
 
             VarStart = VarStart + nl + ul + 14
-
-        #this part might be replaced in future versions as the class that calls the header should only be passing the header data
-        k = 1
-        while ord('*')==self.ba[VarStart+k]:
-            k += 1
-
-       # return VarStart + k
 
         #make the list of names including the counter
         self.var_names = ['Counter'] + self.Name
