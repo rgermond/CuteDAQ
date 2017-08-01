@@ -47,4 +47,4 @@ There is a python implementation of the DAQ included in the ```py``` folder.
 
 ## Future Plans
 * DAQ::decode_header could be improved to support other versions, little endian computers, and possible additional data
-
+* Still need to add FFT functionality
