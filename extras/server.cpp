@@ -64,6 +64,10 @@ int main(int argc, const char *argv[])
     tcp::endpoint endpoint(tcp::v4(), std::atoi(argv[1]));
     server s(io, endpoint); 
 
+    //send greeting 
+    std::vector<char> greeting = {'h','e','l','l','o',' ','t','e','s','t'};
+    s.send_msg(greeting);
+
     //recv header request
     std::vector<char> req(max_size);
     s.recv_msg(req, 5);
