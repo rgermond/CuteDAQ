@@ -97,9 +97,8 @@ class   UDBF:
         #this function decodes the binary file
         #takes the binary stream, bs and decodes it based on the number of variables and the frame size
 
-        n_frames = int(len(bs)/sum(self.var_sizes))
         start = 0
-        for frame in range(n_frames):
+        while start+sum(self.var_sizes)<= len(bs):
             for i,size in enumerate(self.var_sizes):
 
                 #determine if it is a double or a float (8 vs 4 bytes)
@@ -110,17 +109,17 @@ class   UDBF:
 
                 #store the value in the dictionary and update the start position for the next iteration
                 self.data[self.var_names[i]].append(struct.unpack(fmt,bs[start:start+size])[0])
-                start = start+size
+                start += size
 
-    def write_csv(self, filename, fields):
+    def write_csv(self, filename):
 
         with open(filename,'w') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fields)
+            writer = csv.DictWriter(csvfile, fieldnames=self.var_names)
             writer.writeheader()
 
-            while d[fields[0]]:
+            while self.data[self.var_names[0]]:
                 row = {}
-                for key in fields:
+                for key in self.var_names:
                     row[key] = self.data[key].pop(0)
 
                 writer.writerow(row)

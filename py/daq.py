@@ -8,12 +8,13 @@ from decode import UDBF
 
 class   DAQ:
 
-    n_frames = 1000
-    n_rows   = 40e3
 
     def __init__(self,address,port):
         self.ctrl = QGateController(address,port)
         self.udbf = UDBF()
+
+        self.n_frames = 10
+        self.n_rows   = 40e3
 
     def start(self):
         #get the binary header from the controller
@@ -21,6 +22,9 @@ class   DAQ:
 
         #decode the binary header
         self.udbf.decode_header(bin_head)
+
+        #get sampling frequency
+        self.fs = self.udbf.SampleRate
 
         #start the circular buffer
         self.ctrl.request_buffer()
@@ -34,10 +38,21 @@ class   DAQ:
                 stamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
                 filename = stamp + '.csv'
 
-                for i in range(int(n_rows/n_frames)):
-                    bin_str = self.ctrl.acquire_buffer(self.frame_size, n_frames)
-                    self.udbf.decode_buffer(bin_str)
-                    self.udbf.write_csv(filename, self.udbf.var_names[1:])      #write everything but the timestamp
+                print('Acquiring ', str(self.n_rows), ' frames of data')
+                for i in range(int(self.n_rows/self.n_frames)):
+
+                    #pause to let the buffer fill up
+                    time.sleep(self.n_frames/self.fs)
+
+                    #acquire the buffer
+                    buff = self.ctrl.acquire_buffer(self.frame_size, self.n_frames)
+
+                    #decode the buffer
+                    self.udbf.decode_buffer(buff)
+
+                #write to file
+                self.udbf.write_csv(filename)      #write everything but the timestamp
+                print('Wrote data to csv file: ', filename)
 
         #might want to add other except blocks to catch other errors
         except KeyboardInterrupt:
