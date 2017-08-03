@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import struct
+import csv
 
 class   UDBF:
 
@@ -111,3 +112,15 @@ class   UDBF:
                 self.data[self.var_names[i]].append(struct.unpack(fmt,bs[start:start+size])[0])
                 start = start+size
 
+    def write_csv(self, filename, fields):
+
+        with open(filename,'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fields)
+            writer.writeheader()
+
+            while d[fields[0]]:
+                row = {}
+                for key in fields:
+                    row[key] = self.data[key].pop(0)
+
+                writer.writerow(row)
