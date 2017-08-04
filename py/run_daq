@@ -8,7 +8,7 @@ mkdir ./data/$1
 rm *.csv
 
 #call the python daq
-./daq
+./daq.py
 
 #move all the csv files to the previously made directory
 mv *.csv ./data/$1/
